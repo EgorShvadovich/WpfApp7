@@ -210,7 +210,7 @@ namespace WpfApp7
         private void ShowTodaySalesORM()
         {
             String date = $"2022-{DateTime.Now.Month}-{DateTime.Now.Day}";
-            if (_todaysales is null) // 1) обращение - заполняем коллекцию 
+            if (_todaysales is null)
             {
                 using SqlCommand cmd = new($"SELECT s.ID, p.Name , s.Cnt, p.price FROM Sales s JOIN Products p ON s.ID_product = p.id WHERE CAST(s.Moment AS DATE) = '{date}'", _connection);
                 try
