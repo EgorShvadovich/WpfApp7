@@ -32,7 +32,7 @@ namespace WpfApp7
             InitializeComponent();
 
             string stringConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\HP\Desktop\C++ дз шаг\WpfApp7\WpfApp7\Database1.mdf;Integrated Security=True";
-            _connection = new(stringConnection);
+            _connection = new(App.StringConnection);
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -243,6 +243,13 @@ namespace WpfApp7
             }
         }
 
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            if (_connection?.State == ConnectionState.Open)
+            {
+                _connection.Close();
+            }
+        }
     }
 
 
