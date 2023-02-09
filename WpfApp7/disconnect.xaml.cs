@@ -63,21 +63,25 @@ namespace WpfApp7
                     }
                 }
                 Managers = new();
-                using SqlCommand cmdManag = new SqlCommand("SELECT Id,Name FROM Managers", connection);
+                using SqlCommand cmd3 = new("SELECT Id, Name, Surname, Secname, Id_main_dep, Id_sec_dep, Id_chief FROM Managers", connection);
                 {
-                    using var readerManag = cmdManag.ExecuteReader();
-                    while (readerManag.Read())
+                    using var reader = cmd3.ExecuteReader();
+                    while (reader.Read())
                     {
-                        Managers.Add(new()
+                        Managers.Add(new() //изменения коллекции автоматически изменяет и изменения на ListView 
                         {
-                            Id = readerManag.GetGuid(0),
-                            Name = readerManag.GetString(1),
+                            Id = reader.GetGuid(0),
+                            Surname = reader.GetString(1),
+                            Name = reader.GetString(2),
+                            Secname = reader.GetString(3),
+                            IdMainDep = reader.GetGuid(4),
+                            IdSecDep = reader[5] == DBNull.Value ? null : reader.GetGuid(5),
+                            IdChief = reader[6] == DBNull.Value ? null : reader.GetGuid(6),
                         });
-
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 Close();
@@ -86,19 +90,59 @@ namespace WpfApp7
 
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (sender is ListViewItem item)
+            if (sender is ListViewItem item) // item = sender as ListViewItem
             {
-                if (item.Content is Sales.Enities.Department department)
-                    MessageBox.Show(department.ToShortString());
-            }
+                // Обратная связь (view->model) через item.Content 
+                if (item.Content is Department department)
+                {
+                    Sales.CRUD.CrudDepartmentWindow window = new()
+                    {
+                        Department = department
+                    };
+                    int index = Departments.IndexOf(department);
+                    Departments.Remove(department); // удалеям из колекции и передаём на редактирование
+                    if (window.ShowDialog().GetValueOrDefault())
+                    {
+                        using SqlConnection connection = new(App.StringConnection);
+                        try
+                        {
+                            connection.Open();
+                            using SqlCommand cmd = new() { Connection = connection };
+                            if (window.Department is null) //удаление
+                            {
+                                cmd.CommandText = $"DELETE FROM Departments WHERE Id = '{department.Id}' ";
+                                cmd.ExecuteNonQuery();
+                                MessageBox.Show("Данные удалены!");
+                            }
+                            else //возвращаем но изменённый.
+                            {
+                                cmd.CommandText = $"UPDATE Departments SET Name = N'{department.Name}' WHERE Id = '{department.Id}'";
+                                Departments.Insert(index, department);
+                            }
+                            cmd.ExecuteNonQuery();
+                            MessageBox.Show("Задание выполнено успешно!");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
 
+                    }
+                    else//отмена - возвращение в окно
+                    {
+                        Departments.Insert(index, department);
+                    }
+                    //MessageBox.Show(department.ToShortString());
+                }
+
+            }
         }
-        
+
         private void ListViewItem_MouseDoubleClick2(object sender, MouseButtonEventArgs e)
         {
             if (sender is ListViewItem item)
             {
-                if(item.Content is Sales.Enities.Product product)
+                if (item.Content is Sales.Enities.Product product)
                     MessageBox.Show(product.ToShortString());
             }
 
@@ -106,11 +150,42 @@ namespace WpfApp7
 
         private void ListViewItem_MouseDoubleClick3(object sender, MouseButtonEventArgs e)
         {
-            if (sender is ListViewItem item)
+
+        }
+        private void AddDepartment_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new Sales.CRUD.CrudDepartmentWindow();
+
+            if (window.ShowDialog().GetValueOrDefault())
             {
-                if (item.Content is Sales.Enities.Managers manager)
-                    MessageBox.Show(manager.ToShortString());
+                MessageBox.Show(window.Department?.ToShortString());
+                using SqlConnection connection = new(App.StringConnection);
+                try
+                {
+                    connection.Open();
+                    using SqlCommand cmd = new(
+                        $"INSERT INTO Departments(Id, Name) VALUES( @id, @name )",
+                        connection);
+                    cmd.Parameters.AddWithValue("@id", window.Department.Id);
+                    cmd.Parameters.AddWithValue("@name", window.Department.Name);
+                    cmd.ExecuteNonQuery();
+
+                    Departments.Add(window.Department);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
+            else
+            {
+                MessageBox.Show("Cancel");
+            }
+        }
+        private void AddManager_Click(object sender, RoutedEventArgs e)
+        {
+            WpfApp7.CRUD.CrudManagerWindow managerWindow = new() { Owner = this };
+            managerWindow.ShowDialog();
         }
     }
 }

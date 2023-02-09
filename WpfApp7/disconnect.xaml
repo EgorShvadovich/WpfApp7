@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp7"
         mc:Ignorable="d"
-        Title="disconnect" Height="450" Width="800">
+        Title="disconnect" Height="650" Width="800">
     <Grid ShowGridLines="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -35,6 +35,10 @@
                     </Style>
                 </ListView.Resources>
             </ListView>
+            <Button Content="Добавить отдел"
+                    x:Name="AddDepartment"
+                    Click="AddDepartment_Click"
+                    Margin="5"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
             <Label Content="Товары"/>
@@ -76,6 +80,11 @@
                     </Style>
                 </ListView.Resources>
             </ListView>
+            <Button Content="Добавить сотрудника"
+                    x:Name="AddManager"
+                    Click="AddManager_Click"
+                    />
         </StackPanel>
+        
     </Grid>
 </Window>
