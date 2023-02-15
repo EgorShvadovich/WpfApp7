@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp7"
+        Loaded="Window_Loaded"
         mc:Ignorable="d"
         Title="disconnect" Height="650" Width="800">
     <Grid ShowGridLines="True">
@@ -85,6 +86,8 @@
                     Click="AddManager_Click"
                     />
         </StackPanel>
-        
+        <TextBlock Grid.Column="1" Grid.Row="1" x:Name="textBlock1">
+            
+        </TextBlock>
     </Grid>
 </Window>

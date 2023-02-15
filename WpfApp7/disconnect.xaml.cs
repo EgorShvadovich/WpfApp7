@@ -187,5 +187,16 @@ namespace WpfApp7
             WpfApp7.CRUD.CrudManagerWindow managerWindow = new() { Owner = this };
             managerWindow.ShowDialog();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            var man = Managers[3];
+           
+            var dep = Departments.FirstOrDefault(d => d.Id == man.IdMainDep);
+            var dep1 = Departments.FirstOrDefault(d => d.Id == man.IdSecDep);
+
+
+            textBlock1.Text += man.Name + " " + dep.Name + " " + (dep1?.Name ?? "--") + "\n";
+        }
     }
 }

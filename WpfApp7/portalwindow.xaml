@@ -25,6 +25,18 @@
              Click="ButtonClick2">
 
         </Button>
+        <Button
+            Content="3. LINQ-to-SQL(disabled)"
+             Margin="10"
+             Click="Button_Click">
+
+        </Button>
+        <Button
+            Content="4. Entity Framework Core"
+             Margin="10"
+             Click="Button_Click_1">
+
+        </Button>
 
     </StackPanel>
 </Window>

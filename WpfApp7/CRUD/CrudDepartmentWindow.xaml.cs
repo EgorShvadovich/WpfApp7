@@ -20,7 +20,7 @@ namespace Sales.CRUD
     public partial class CrudDepartmentWindow : Window
     {
         public Enities.Department? Department { get; set; }
-
+        
         public CrudDepartmentWindow()
         {
             InitializeComponent();
@@ -42,6 +42,8 @@ namespace Sales.CRUD
             }
             DepartmentId.Text = Department.Id.ToString();
             DepartmentName.Text = Department.Name;
+
+
         }
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)

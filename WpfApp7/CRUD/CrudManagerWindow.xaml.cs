@@ -19,6 +19,7 @@ namespace WpfApp7.CRUD
     /// </summary>
     public partial class CrudManagerWindow : Window
     {
+        public Sales.Enities.Managers? Manager { get; set; }
         public CrudManagerWindow()
         {
             InitializeComponent();
@@ -27,6 +28,24 @@ namespace WpfApp7.CRUD
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             DataContext = (Owner as disconnect);
+            if (Manager is null)  // режим "C" - добавление отдела
+            {
+                Manager = new Sales.Enities.Managers()
+                {
+                    Id = Guid.NewGuid()
+                };
+                ButtonDelete.IsEnabled = false;
+            }
+            else  // Режимы "UD" - есть переданный отдел для изменения/удаления
+            {
+                ButtonDelete.IsEnabled = true;
+            }
+            ManagerId.Text = Manager.Id.ToString();
+            ManagerSurname.Text = Manager.Surname;
+            ManagerName.Text = Manager.Name;
+            ManagerSecname.Text = Manager.Secname;
+            DepartamentsCombo.SelectedItem = Manager.IdMainDep.ToString();
+           
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)

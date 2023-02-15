@@ -1,0 +1,30 @@
+﻿<Window x:Class="WpfApp7.LinqWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/c:\users\hp\desktop\c++ дз шаг\wpfapp7\wpfapp7\linqwindow.xaml
+c:\users\hp\desktop\c++ дз шаг\wpfapp7\wpfapp7\linqwindow.xaml.cs
+blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp7"
+        mc:Ignorable="d"
+        Title="LinqWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical">
+            <Button x:Name="Simple" Content="Simple" Click="Simple_Click"/>
+            <Button x:Name="Simple1" Content="Simple1" Click="Simple2_Click"/>
+            <Button x:Name="Simple2" Content="Simple2" Click="Simple3_Click"/>
+            <Button x:Name="Simple3" Content="menshe 200+sort" Click="Simple4_Click"/>
+            <Button x:Name="Simple4" Content="ov" Click="Simple5_Click"/>
+            <Button x:Name="Simple5" Content="start on Г" Click="Simple6_Click"/>
+            <Button x:Name="Simple6" Content="мененджеры с указанием отдела по совместительству" Click="Simple7_Click"/>
+            <Button x:Name="Simple7" Content="мененджеры с указанием руководителя" Click="Simple8_Click"/>
+            <Button x:Name="Simple8" Content="мененджеры с указанием и отдела и руководителя" Click="Simple9_Click"/>
+            <Button x:Name="Join" Content="join" Click="Join_Click"/>
+        </StackPanel>
+        <TextBlock Grid.Column="1" x:Name="textBlock1"/>
+    </Grid>
+</Window>

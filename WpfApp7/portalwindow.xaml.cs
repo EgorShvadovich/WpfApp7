@@ -34,5 +34,19 @@ namespace WpfApp7
             new disconnect().ShowDialog();
             this.Show();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            new LinqWindow().ShowDialog();
+            this.Show();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            new EfWindow().ShowDialog();
+            this.Show();
+        }
     }
 }
