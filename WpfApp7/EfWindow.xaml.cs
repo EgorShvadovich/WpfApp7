@@ -31,6 +31,22 @@ namespace WpfApp7
             MonitorDepartments.Content = dataContext.Departaments.Count().ToString();
             MonitorManagers.Content = dataContext.Manager.Count().ToString();
             MonitorProducts.Content = dataContext.Products.Count().ToString();
+            MonitorSales.Content = dataContext.Sales.Count().ToString();
+        }
+        private void ButtonSalesAdd_Click(object sender, RoutedEventArgs e)
+        {
+            dataContext.Sales.Add(new EfContext.Sales { Id = Guid.NewGuid(), IdManager = Guid.NewGuid(), IdProduct = Guid.NewGuid(), Count = new Random().Next(10), Moment = DateTime.Now });
+            dataContext.Sales.Add(new EfContext.Sales { Id = Guid.NewGuid(), IdManager = Guid.NewGuid(), IdProduct = Guid.NewGuid(), Count = new Random().Next(10), Moment = DateTime.Now });
+            dataContext.Sales.Add(new EfContext.Sales { Id = Guid.NewGuid(), IdManager = Guid.NewGuid(), IdProduct = Guid.NewGuid(), Count = new Random().Next(10), Moment = DateTime.Now });
+            dataContext.Sales.Add(new EfContext.Sales { Id = Guid.NewGuid(), IdManager = Guid.NewGuid(), IdProduct = Guid.NewGuid(), Count = new Random().Next(10), Moment = DateTime.Now });
+            dataContext.Sales.Add(new EfContext.Sales { Id = Guid.NewGuid(), IdManager = Guid.NewGuid(), IdProduct = Guid.NewGuid(), Count = new Random().Next(10), Moment = DateTime.Now });
+            dataContext.Sales.Add(new EfContext.Sales { Id = Guid.NewGuid(), IdManager = Guid.NewGuid(), IdProduct = Guid.NewGuid(), Count = new Random().Next(10), Moment = DateTime.Now });
+            dataContext.Sales.Add(new EfContext.Sales { Id = Guid.NewGuid(), IdManager = Guid.NewGuid(), IdProduct = Guid.NewGuid(), Count = new Random().Next(10), Moment = DateTime.Now });
+            dataContext.Sales.Add(new EfContext.Sales { Id = Guid.NewGuid(), IdManager = Guid.NewGuid(), IdProduct = Guid.NewGuid(), Count = new Random().Next(10), Moment = DateTime.Now });
+            dataContext.Sales.Add(new EfContext.Sales { Id = Guid.NewGuid(), IdManager = Guid.NewGuid(), IdProduct = Guid.NewGuid(), Count = new Random().Next(10), Moment = DateTime.Now });
+            dataContext.Sales.Add(new EfContext.Sales { Id = Guid.NewGuid(), IdManager = Guid.NewGuid(), IdProduct = Guid.NewGuid(), Count = new Random().Next(10), Moment = DateTime.Now });
+            dataContext.SaveChanges();
+            MonitorSales.Content = dataContext.Sales.Count().ToString();
         }
     }
 }

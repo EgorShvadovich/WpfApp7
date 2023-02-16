@@ -12,6 +12,7 @@ namespace WpfApp7.EfContext
         public DbSet<Departament> Departaments { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Manager> Manager { get; set; }
+        public DbSet<Sales> Sales { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             String StringConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog = EfSales111;Integrated Security=True";
@@ -120,6 +121,17 @@ namespace WpfApp7.EfContext
             modelBuilder.Entity<Manager>().HasData(new Manager { Id = Guid.Parse("C5EE780A-4D53-40FB-A592-C35CFC9455F2"), Surname = "Мирна", Name = "Рада", Secname = "Сергеевна", IdMainDep = Guid.Parse("8DCC3969-1D93-47A9-8B79-A30C738DB9B4"), IdSecDep = null, IdChief = null });
             modelBuilder.Entity<Manager>().HasData(new Manager { Id = Guid.Parse("D3FCC76B-09A2-4578-A72C-34468DA36C45"), Surname = "Одинцова", Name = "Мальвина", Secname = "Дмитриевна", IdMainDep = Guid.Parse("624B3BB5-0F2C-42B6-A416-099AAB799546"), IdSecDep = Guid.Parse("415B36D9-2D82-4A92-A313-48312F8E18C6"), IdChief = Guid.Parse("1A930DE7-647B-4A32-AD3B-0CAF4528B356") });
             modelBuilder.Entity<Manager>().HasData(new Manager { Id = Guid.Parse("6FB5BCA3-2CAE-4450-AAB5-E0184FD45BE9"), Surname = "Ткаченко", Name = "Альбина", Secname = "Викторовна", IdMainDep = Guid.Parse("415B36D9-2D82-4A92-A313-48312F8E18C6"), IdSecDep = null, IdChief = null });
+        }
+        private void SeedSales(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Sales>().HasData(new Sales
+            {
+                Id = Guid.Parse("72098e8b-1298-40bc-a612-0007e5aede94"),
+                IdManager = Guid.Parse("23d52416-d994-4564-a106-1fdf5fecef25"),
+                IdProduct = Guid.Parse("870da1a9-44f4-4018-b7fc-727a2058faf0"),
+                Count = 6,
+                Moment = DateTime.Parse("05.06.2022 11:05:00")
+            });
         }
     }
 }

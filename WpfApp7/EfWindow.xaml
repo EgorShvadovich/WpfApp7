@@ -23,6 +23,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -31,6 +32,7 @@
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
+                
             </Grid.RowDefinitions>
             <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
                    Content="Монитор" FontSize="20" FontWeight="DemiBold"
@@ -55,6 +57,10 @@
                    Content="Продаж" />
             <Label Grid.Column="1" Grid.Row="5"
                    x:Name="MonitorSales"/>
+            <Button x:Name="ButtonSalesAdd"
+                    Content="Dobavit random 10"
+                    Grid.Column="2" Grid.Row="5" 
+                    Click="ButtonSalesAdd_Click"/>
         </Grid>
     </Grid>
 </Window>
