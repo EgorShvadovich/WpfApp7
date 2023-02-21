@@ -18,7 +18,7 @@ namespace WpfApp7.EfContext
 
         public String ToShortString()
         {
-            return $"{Id.ToString()[..4]} ... {Surname} {Name} {Secname}";
+            return $"{Surname} {Name} {Secname}";
         }
     }
 }

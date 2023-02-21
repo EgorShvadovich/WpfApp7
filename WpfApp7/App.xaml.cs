@@ -14,5 +14,6 @@ namespace WpfApp7
     public partial class App : Application
     {
         public static String StringConnection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\HP\Desktop\C++ дз шаг\WpfApp7\WpfApp7\Database1.mdf;Integrated Security=True";
+        public static Random random = new();
     }
 }
